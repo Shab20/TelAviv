@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle List</title>
+</head>
+<body>
+    <h1>Vehicle List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Vehicle Type</th>
+                <th>Real Cost</th>
+                <th>Size</th>
+                <th>Date Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicle in vehicles %}
+                <tr>
+                    <td>{{ vehicle.vehicle_type }}</td>
+                    <td>{{ vehicle.real_cost }}</td>
+                    <td>{{ vehicle.size }}</td>
+                    <td>{{ vehicle.date_created }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No vehicles found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

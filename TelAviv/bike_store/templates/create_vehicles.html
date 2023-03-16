@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+  <h1>Create Vehicles</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="vehicle_type">Vehicle Type:</label>
+    <select id="vehicle_type" name="vehicle_type">
+      {% for vehicle_type in vehicle_types %}
+        <option value="{{ vehicle_type.id }}">{{ vehicle_type.name }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <label for="real_cost">Real Cost:</label>
+    <input type="text" id="real_cost" name="real_cost">
+    <br>
+    <label for="size">Size:</label>
+    <select id="size" name="size">
+      {% for size in vehicle_sizes %}
+        <option value="{{ size.id }}">{{ size.name }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <input type="submit" value="Create Vehicle">
+  </form>
+  <br>
+  {% if vehicles_created %}
+    <h2>Vehicles Created:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Vehicle Type</th>
+          <th>Date Created</th>
+          <th>Real Cost</th>
+          <th>Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for vehicle in vehicles_created %}
+          <tr>
+            <td>{{ vehicle.vehicle_type.name }}</td>
+            <td>{{ vehicle.date_created }}</td>
+            <td>{{ vehicle.real_cost }}</td>
+            <td>{{ vehicle.size.name }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %}

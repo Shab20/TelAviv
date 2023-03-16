@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+  <div class="container">
+    <h1>Create Rental</h1>
+    <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </div>
+
+<!-- Display the table of data -->
+<table class="table">
+    <thead>
+      <tr>
+        <th>Rental Date</th>
+        <th>Return Date</th>
+        <th>Customer</th>
+        <th>Vehicle</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rental in rentals %}
+        <tr>
+          <td>{{ rental.rental_date }}</td>
+          <td>{{ rental.return_date }}</td>
+          <td>{{ rental.customer }}</td>
+          <td>{{ rental.vehicle }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+{% endblock %}
